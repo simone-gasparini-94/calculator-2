@@ -20,10 +20,15 @@ function addToDisplay(event) {
             display.textContent += event.target.textContent; 
         }
 
-    if(event.target.id === "+") {
-    firstNumber = display.textContent;
-    console.log(firstNumber);
- }
+    if(
+        event.target.id === "+" ||
+        event.target.id === "-" ||
+        event.target.id === "×" ||
+        event.target.id === "÷"
+    )   {
+            firstNumber = display.textContent;
+            console.log(firstNumber);
+        }
 }
 
 buttonsContainer.addEventListener("click", addToDisplay);
