@@ -1,9 +1,47 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+    --text-color: #5a5a5a;
+    --bg-color: #E5E5E5;
+    --border-color: #767676;
+}
+
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
     height: 100vh;
+
+    font-family: sans-serif;
+}
+
+button,
+.display {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 2px;
+
+    font-size: 24px;
+    color: var(--text-color);
+}
+
+.display {
+    width: 400px;
+    height: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: end;
+
+    padding: 44px;
 }
 
 .buttons-container {
@@ -14,3 +52,4 @@ body {
     width: 400px;
     height: 500px;
 }
+
