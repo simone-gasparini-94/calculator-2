@@ -2,8 +2,13 @@ const display = document.querySelector(".display");
 
 const buttonsContainer = document.querySelector(".buttons-container");
 
-let initialNumber = "0";
-display.textContent = initialNumber;
+const calculator = {
+    initialNumber: "0",
+    firstNumber: null,
+    secondNumber: null,
+}
+
+display.textContent = calculator.initialNumber;
 
 //function triggered by the buttons
 function addToDisplay(event) {
@@ -11,7 +16,7 @@ function addToDisplay(event) {
     if(
         event.target.id === "AC"
     )   {
-        display.textContent = initialNumber;
+        display.textContent = calculator.initialNumber;
     }
 
     if(
@@ -26,8 +31,9 @@ function addToDisplay(event) {
         event.target.id === "8" ||
         event.target.id === "9" 
     )   {   
-            //if condition that deletes the first 0
-            if(display.textContent === initialNumber) {
+            if(
+                display.textContent === calculator.initialNumber
+            ) {
                 display.textContent = event.target.textContent; 
             } else {
                 display.textContent += event.target.textContent;
@@ -36,12 +42,14 @@ function addToDisplay(event) {
 
     if(
         event.target.id === "+" ||
-        event.target.id === "-" ||
+        event.target.id === "−" ||
         event.target.id === "×" ||
         event.target.id === "÷"
     )   {
-            firstNumber = display.textContent;
-            display.textContent = firstNumber + " " + event.target.textContent;
+
+            calculator.firstNumber = display.textContent;
+            console.log(calculator.firstNumber);
+            display.textContent = event.target.textContent;
         }
 }
 
