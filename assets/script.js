@@ -6,6 +6,8 @@ const calculator = {
     initialNumber: "0",
     firstNumber: null,
     secondNumber: null,
+    digits: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+    mathSymbols: ["+", "−", "×", "÷"]
 }
 
 display.textContent = calculator.initialNumber;
@@ -20,16 +22,7 @@ function addToDisplay(event) {
     }
 
     if(
-        event.target.id === "0" ||
-        event.target.id === "1" ||
-        event.target.id === "2" ||
-        event.target.id === "3" ||
-        event.target.id === "4" ||
-        event.target.id === "5" ||
-        event.target.id === "6" ||
-        event.target.id === "7" ||
-        event.target.id === "8" ||
-        event.target.id === "9" 
+        calculator.digits.includes(event.target.id)
     )   {   
             if(
                 display.textContent === calculator.initialNumber
@@ -41,14 +34,11 @@ function addToDisplay(event) {
         }
 
     if(
-        event.target.id === "+" ||
-        event.target.id === "−" ||
-        event.target.id === "×" ||
-        event.target.id === "÷"
+        calculator.mathSymbols.includes(event.target.id)
     )   {
 
-            calculator.firstNumber = display.textContent;
-            console.log(calculator.firstNumber);
+            calculator.firstNumber = +display.textContent;
+            console.log(calculator.firstNumber, typeof calculator.firstNumber);
             display.textContent = event.target.textContent;
         }
 }
