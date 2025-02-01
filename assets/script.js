@@ -48,7 +48,9 @@ function addDigit(digit) {
 }
 
 function addOperator(operator) {
+    if(calculator.firstNumber === null) {
     calculator.firstNumber = +display.textContent;
+    }
     console.log(calculator.firstNumber, typeof calculator.firstNumber);
     if(operator === "*") {
         display.textContent = "×";
