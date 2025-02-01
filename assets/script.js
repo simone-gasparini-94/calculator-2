@@ -1,7 +1,7 @@
 const calculator = {
     initialNumber: "0",
     digits: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
-    mathSymbols: ["+", "−", "×", "÷"],
+    mathSymbols: ["+", "-", "*", "/"],
     equals: "=",
 
     firstNumber: null,
@@ -13,8 +13,6 @@ const display = document.querySelector(".display");
 display.textContent = calculator.initialNumber;
 const buttonsContainer = document.querySelector(".buttons-container");
 
-// Main function: event handler of the clicks of the buttons
-// that incorporates the various functions
 
 function calculate(event) {
     if(event.target.id === "AC")   {
@@ -30,7 +28,7 @@ function calculate(event) {
     }
 
     if(event.target.id === calculator.equals) {
-        addEquals();
+        operate();
     }
 }
 
@@ -41,7 +39,7 @@ function resetDisplay() {
 function addDigit(digit) {
     if(
         display.textContent === calculator.initialNumber ||
-        calculator.mathSymbols.includes(display.textContent)
+        calculator.operator !== null
     ) {
         display.textContent = digit; 
     } else {
@@ -52,14 +50,31 @@ function addDigit(digit) {
 function addOperator(operator) {
     calculator.firstNumber = +display.textContent;
     console.log(calculator.firstNumber, typeof calculator.firstNumber);
-    display.textContent = operator;
+    if(operator === "*") {
+        display.textContent = "×";
+    } else if(operator === "/") {
+        display.textContent = "÷"
+    } else {
+        display.textContent = operator;
+    }
+    calculator.operator = operator;
+    console.log(calculator.operator)
 }
 
-function addEquals() {
+function operate() {
     calculator.secondNumber = +display.textContent;
     console.log(calculator.secondNumber, typeof calculator.secondNumber);
-    calculator.firstNumber += calculator.secondNumber;
+    if(calculator.operator === "+") {
+        calculator.firstNumber += calculator.secondNumber;
+    } else if(calculator.operator === "-") {
+        calculator.firstNumber -= calculator.secondNumber;
+    } else if(calculator.operator === "*") {
+        calculator.firstNumber *= calculator.secondNumber;
+    } else if(calculator.operator === "/") {
+        calculator.firstNumber /= calculator.secondNumber;
+    }
     display.textContent = calculator.firstNumber;
+    console.log(calculator.firstNumber);
 }
 
 
