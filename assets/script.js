@@ -17,9 +17,13 @@ display.textContent = calculator.initialNumber;
 const buttonsContainer = document.querySelector(".buttons-container");
 
 
-function calculate(event) {
+function useCalculator(event) {
     if(event.target.id === calculator.ac)   {
        resetDisplay();
+    }
+
+    if(event.target.id === calculator.c) {
+        cancelDigit();
     }
 
     if(calculator.digits.includes(event.target.id))   {   
@@ -44,6 +48,13 @@ function resetDisplay() {
     calculator.firstNumber = null;
     calculator.secondNumber = null;
     calculator.operator = null;
+}
+
+function cancelDigit() {
+    let arr = display.textContent.split("");
+    arr.pop();
+    let str = arr.join("");
+    display.textContent = str || "0";
 }
 
 function addDigit(digit) {
@@ -99,11 +110,11 @@ function operate() {
     }
 
     if(calculator.firstNumber % 1 !== 0) {
-        display.textContent = calculator.firstNumber.toFixed(2);
+        display.textContent = +calculator.firstNumber.toFixed(2);
     } else {
-        display.textContent = calculator.firstNumber;
+        display.textContent = +calculator.firstNumber;
     }
-    
+
     calculator.secondNumber = null;
     calculator.operator = null;
 }
@@ -115,4 +126,4 @@ function addFloat() {
 }
 
 
-buttonsContainer.addEventListener("click", calculate);
+buttonsContainer.addEventListener("click", useCalculator);
